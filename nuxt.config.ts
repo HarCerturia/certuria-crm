@@ -1,0 +1,81 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+
+  devtools: { enabled: false },
+
+  // domain driven architecture (best for CRM)
+  extends: [
+      './app/domains/core',
+      './app/domains/self-disclosures',
+      './app/domains/offers',
+  ],
+
+  // Hybrid Rendering optimized for performance
+  routeRules: {
+    '/': { ssr: true, prerender: false },
+    '/dashboard': { ssr: false, prerender: false },
+    '/self-disclosures/**': { ssr: false, prerender: false },
+    '/offers/**': { ssr: false, prerender: false },
+    '/admin/**': { ssr: false, prerender: false },
+    '/_nuxt/**': { headers: { 'cache-control': 's-maxage=31536000' } },
+    '/api/**': { cors: true },
+  },
+
+  runtimeConfig: {
+
+    // Server-side only
+    awApiKey: process.env.NUXT_APPWRITE_API_KEY,
+
+    // Public (client + server)
+    public: {
+      awEndpoint: process.env.NUXT_APPWRITE_ENDPOINT,
+      awProject: process.env.NUXT_APPWRITE_PROJECT,
+
+      // Database: Self Disclosures
+      awDatabaseSelfDisclosures: process.env.NUXT_APPWRITE_DATABASE_SELF_DISCLOSURES,
+        // Self Disclosures Collections
+        awSelfDisclosuresCollectionCompletedSubmissions: process.env.NUXT_APPWRITE_SELF_DISCLOSURES_COLLECTION_COMPLETED_SUBMISSIONS, // COMPLETED_SUBMISSIONS
+        awSelfDisclosuresCollectionAllSubmissions: process.env.NUXT_APPWRITE_SELF_DISCLOSURES_COLLECTION_ALL_SUBMISSIONS, // ALL_SUBMISSIONS
+
+      // Database: Offers
+      awDatabaseOffers: process.env.NUXT_APPWRITE_DATABASE_OFFERS,
+        // Offers Collections
+    }
+  },
+
+  modules: [
+    '@nuxt/ui',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxtjs/google-fonts',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
+  ],
+
+  googleFonts: {
+    families: {
+      'Nunito+Sans': true,
+      'Kumbh+Sans': true,
+    },
+  },
+
+  css: ['~/assets/css/main.css'],
+
+  experimental: {
+    viewTransition: true
+  },
+
+  nitro: {
+    experimental: {
+      wasm: true
+    },
+    minify: true
+  },
+
+  future: {
+    compatibilityVersion: 4
+  },
+
+  compatibilityDate: '2024-11-27'
+})
