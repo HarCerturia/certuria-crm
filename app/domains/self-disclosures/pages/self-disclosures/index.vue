@@ -18,10 +18,13 @@
         loading-text="Lade Selbstauskünfte..."
         :columns="columns"
         :ui="{
-           th: 'px-4 text-xl font-semibold',
-           td: 'px-4 text-xl'
-         }"
-        class="flex-1 h-[700px] overflow-auto shadow-sm"
+          td: 'text-xl py-2 px-2',
+          th: 'text-sm font-semibold text-gray-700 bg-gray-50 sticky top-0 px-2',
+          tr: 'hover:bg-gray-50',
+          tbody: 'divide-y divide-gray-200',
+        }"
+        class="w-full max-h-[600px]"
+        size="sm"
       />
 
   </div>

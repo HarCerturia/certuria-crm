@@ -28,6 +28,10 @@ export default defineNuxtConfig({
 
     // Public (client + server)
     public: {
+
+      // DocuSeal API Key (public for client-side usage)
+      docusealApiKey: process.env.NUXT_DOCUSEAL_API_KEY,
+
       awEndpoint: process.env.NUXT_APPWRITE_ENDPOINT,
       awProject: process.env.NUXT_APPWRITE_PROJECT,
 
