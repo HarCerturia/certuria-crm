@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui'
-import { jsPDF } from 'jspdf'
 
 const props = defineProps<{
   auditData: object,
@@ -157,7 +156,7 @@ const sendToDocuSeal = async () => {
     }
 
     // Upload to DocuSeal
-    const response = await $fetch('/api/offers/docuseal/create-submission', {
+    await $fetch('/api/offers/docuseal/create-submission', {
       method: 'POST',
       body: {
         name: 'TESTSUBMISSION',
@@ -166,8 +165,6 @@ const sendToDocuSeal = async () => {
         serviceEmail: 'harald.innetzberger@certuria.de',
       },
     })
-
-    console.log(response);
 
     if (typeof useToast === 'function') {
       const toast = useToast()
@@ -513,20 +510,23 @@ v-for="(loc, index) in auditData?.locations" :key="index"
 
   <div class="rounded-2xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl p-6 mt-5">
     <h3 class="text-lg font-semibold text-gray-900 mb-6">Aktionen</h3>
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
 
-      <UButton variant="solid" color="primary" class="px-8 py-4 text-sm font-semibold" @click="generatePDF">
-        <UIcon name="i-lucide-file-text" class="mr-3 w-5 h-5" />
-        Angebotsvorschau als PDF im Browser anzeigen
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+      <UButton variant="solid" size="lg" color="primary" class="flex-col h-20" @click="generatePDF">
+        <UIcon name="i-lucide-file-text" class="w-5 h-5 mb-2" />
+        PDF Vorschau
       </UButton>
 
-      <UButton 
-        variant="solid" 
-        color="green" 
-        class="px-8 py-4 text-sm font-semibold" 
+      <UButton
+        variant="solid"
+        color="info"
+        size="lg"
+        class="flex-col h-20"
         :loading="isDocuSealLoading"
         :disabled="isDocuSealLoading"
         @click="sendToDocuSeal">
+        <UIcon name="i-lucide-file-signature" class="w-5 h-5 mb-2" />
         {{ isDocuSealLoading ? 'Wird versendet...' : 'Zur Unterschrift an DocuSeal senden' }}
       </UButton>
 

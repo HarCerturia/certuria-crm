@@ -23,7 +23,7 @@
 interface Props {
   title: string
   description?: string
-  variant?: 'blue' | 'teal' | 'purple' | 'gradient' | 'green'
+  variant?: 'blue' | 'teal' | 'purple' | 'gradient' | 'green' | yellow
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -41,6 +41,8 @@ const backgroundClass = computed(() => {
       return 'bg-gradient-to-r from-emerald-500 to-teal-500'
     case 'green':
       return 'bg-gradient-to-r from-green-500/10 to-green-600/10'
+    case 'yellow':
+      return 'bg-gradient-to-r from-yellow-200 to-yellow-500'
     default:
       return 'bg-gradient-to-r from-blue-600/10 to-purple-600/10'
   }

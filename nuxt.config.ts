@@ -35,15 +35,15 @@ export default defineNuxtConfig({
       awEndpoint: process.env.NUXT_APPWRITE_ENDPOINT,
       awProject: process.env.NUXT_APPWRITE_PROJECT,
 
-      // Database: Self Disclosures
-      awDatabaseSelfDisclosures: process.env.NUXT_APPWRITE_DATABASE_SELF_DISCLOSURES,
+      // Database: Selbstauskünfte zur Trägerzulassung
+      awDatabaseSelfDisclosuresTz: process.env.NUXT_APPWRITE_DATABASE_SELF_DISCLOSURES_TZ,
         // Self Disclosures Collections
-        awSelfDisclosuresCollectionCompletedSubmissions: process.env.NUXT_APPWRITE_SELF_DISCLOSURES_COLLECTION_COMPLETED_SUBMISSIONS, // COMPLETED_SUBMISSIONS
-        awSelfDisclosuresCollectionAllSubmissions: process.env.NUXT_APPWRITE_SELF_DISCLOSURES_COLLECTION_ALL_SUBMISSIONS, // ALL_SUBMISSIONS
+        awSelfDisclosuresCollectionTzCompletedSubmissions: process.env.NUXT_APPWRITE_SELF_DISCLOSURES_COLLECTION_TZ_COMPLETED_SUBMISSIONS, // Abgeschlossene (Signierte) Einreichungen
+        awSelfDisclosuresCollectionTzAllSubmissions: process.env.NUXT_APPWRITE_SELF_DISCLOSURES_COLLECTION_TZ_ALL_SUBMISSIONS, // ALLE Einreichungen
 
       // Database: Offers
       awDatabaseOffers: process.env.NUXT_APPWRITE_DATABASE_OFFERS,
-        // Offers Collections
+
     }
   },
 

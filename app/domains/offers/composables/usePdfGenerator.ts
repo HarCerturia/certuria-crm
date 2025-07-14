@@ -1,5 +1,7 @@
+import type { AuditData, ServiceData, PdfGenerationResult, Location } from '~/domains/offers/types/audit'
+
 export const usePdfGenerator = () => {
-  const generateAuditPdf = async (auditData: any, servicesData: any[], openInBrowser: boolean = true) => {
+  const generateAuditPdf = async (auditData: AuditData, servicesData: ServiceData[], openInBrowser: boolean = true): Promise<PdfGenerationResult> => {
     try {
       const { jsPDF } = await import('jspdf')
       const autoTable = (await import('jspdf-autotable')).default
@@ -129,7 +131,7 @@ export const usePdfGenerator = () => {
         doc.setTextColor(41, 128, 185)
         doc.text('Standorte', margin, yPos)
 
-        const locationTableData = auditData.locations.map((loc: any) => [
+        const locationTableData = auditData.locations.map((loc: Location) => [
           `${loc.locationAddress?.streetAndHouseNumber || ''}, ${loc.locationAddress?.postalCode || ''} ${loc.locationAddress?.place || ''}`,
           loc.locationType || '',
           loc.employees || '0',
@@ -180,7 +182,7 @@ export const usePdfGenerator = () => {
         }).format(price)
       }
 
-      const servicesTableData = servicesData.map((s: any) => [
+      const servicesTableData = servicesData.map((s: ServiceData) => [
         s.number,
         s.service,
         s.quantity,

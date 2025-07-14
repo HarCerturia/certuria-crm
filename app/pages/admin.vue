@@ -27,15 +27,15 @@
             <p class="text-sm text-gray-500">{{ users.length }} Benutzer registriert</p>
           </div>
         </div>
-        <button
-          class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-medium rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+        <UButton
+          variant="solid"
+          color="primary"
+          size="sm"
           @click="showAddUserModal = true"
         >
-          <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
+          <UIcon name="i-lucide-plus" class="mr-2 w-4 h-4" />
           Benutzer hinzufügen
-        </button>
+        </UButton>
       </div>
 
       <!-- Users Table -->
@@ -235,12 +235,10 @@
       <div class="rounded-2xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl p-6">
         <div class="flex items-center justify-between mb-6">
           <h3 class="text-xl font-semibold text-gray-900">Admin-Aktivitäten</h3>
-          <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-xl hover:bg-red-100 transition-colors duration-200">
+          <UButton variant="soft" size="sm" color="error">
             Alle Logs anzeigen
-            <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-          </button>
+            <UIcon name="i-lucide-arrow-right" class="ml-2 w-4 h-4" />
+          </UButton>
         </div>
 
         <div class="flow-root">
@@ -278,34 +276,25 @@ class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
     <div class="rounded-2xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl p-6">
       <h3 class="text-lg font-semibold text-gray-900 mb-6">Schnelle Admin-Aktionen</h3>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <button class="flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-xl text-blue-700 font-medium hover:from-blue-100 hover:to-blue-200 transition-all duration-200 group">
-          <svg class="mr-3 h-5 w-5 group-hover:scale-110 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-          </svg>
+        <UButton variant="soft" size="lg" color="primary" class="flex-col h-20">
+          <UIcon name="i-lucide-user-plus" class="w-5 h-5 mb-2" />
           Benutzer hinzufügen
-        </button>
+        </UButton>
 
-        <button class="flex items-center justify-center px-6 py-4 bg-gradient-to-r from-emerald-50 to-emerald-100 border border-emerald-200 rounded-xl text-emerald-700 font-medium hover:from-emerald-100 hover:to-emerald-200 transition-all duration-200 group">
-          <svg class="mr-3 h-5 w-5 group-hover:scale-110 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18.75 19.5H6.75Z" />
-          </svg>
+        <UButton variant="soft" size="lg" color="success" class="flex-col h-20">
+          <UIcon name="i-lucide-cloud-upload" class="w-5 h-5 mb-2" />
           Backup erstellen
-        </button>
+        </UButton>
 
-        <button class="flex items-center justify-center px-6 py-4 bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200 rounded-xl text-purple-700 font-medium hover:from-purple-100 hover:to-purple-200 transition-all duration-200 group">
-          <svg class="mr-3 h-5 w-5 group-hover:scale-110 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a6.932 6.932 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-          </svg>
+        <UButton variant="soft" size="lg" color="secondary" class="flex-col h-20">
+          <UIcon name="i-lucide-settings" class="w-5 h-5 mb-2" />
           System-Config
-        </button>
+        </UButton>
 
-        <button class="flex items-center justify-center px-6 py-4 bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-xl text-red-700 font-medium hover:from-red-100 hover:to-red-200 transition-all duration-200 group">
-          <svg class="mr-3 h-5 w-5 group-hover:scale-110 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-          </svg>
+        <UButton variant="soft" size="lg" color="error" class="flex-col h-20">
+          <UIcon name="i-lucide-shield-alert" class="w-5 h-5 mb-2" />
           Sicherheits-Logs
-        </button>
+        </UButton>
       </div>
     </div>
   </div>

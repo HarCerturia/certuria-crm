@@ -93,12 +93,10 @@
         <div class="rounded-2xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl p-6">
           <div class="flex items-center justify-between mb-6">
             <h3 class="text-xl font-semibold text-gray-900">Letzte Aktivitäten</h3>
-            <button class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors duration-200">
+            <UButton variant="soft" size="sm" color="primary">
               Alle anzeigen
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
+              <UIcon name="i-lucide-arrow-right" class="ml-2 w-4 h-4" />
+            </UButton>
           </div>
 
           <div class="flow-root">
@@ -136,24 +134,18 @@ class="flex h-10 w-10 items-center justify-center rounded-xl shadow-lg"
         <div class="rounded-2xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl p-6">
           <h3 class="text-lg font-semibold text-gray-900 mb-4">Schnellaktionen</h3>
           <div class="space-y-3">
-            <button class="w-full flex items-center justify-start px-4 py-3 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-xl text-blue-700 font-medium hover:from-blue-100 hover:to-blue-200 transition-all duration-200 group">
-              <svg class="mr-3 h-5 w-5 group-hover:scale-110 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-              </svg>
+            <UButton variant="soft" size="lg" color="primary" class="w-full justify-start">
+              <UIcon name="i-lucide-plus" class="mr-3 w-5 h-5" />
               Neuer Kontakt
-            </button>
-            <button class="w-full flex items-center justify-start px-4 py-3 bg-gradient-to-r from-emerald-50 to-emerald-100 border border-emerald-200 rounded-xl text-emerald-700 font-medium hover:from-emerald-100 hover:to-emerald-200 transition-all duration-200 group">
-              <svg class="mr-3 h-5 w-5 group-hover:scale-110 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-              </svg>
+            </UButton>
+            <UButton variant="soft" size="lg" color="success" class="w-full justify-start cursor-default">
+              <UIcon name="i-lucide-file-plus" class="mr-3 w-5 h-5" />
               Angebot erstellen
-            </button>
-            <button class="w-full flex items-center justify-start px-4 py-3 bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200 rounded-xl text-purple-700 font-medium hover:from-purple-100 hover:to-purple-200 transition-all duration-200 group">
-              <svg class="mr-3 h-5 w-5 group-hover:scale-110 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-4.5-6.75h.008v.008H16.5V12Zm-3.75 0h.008v.008H12.75V12Zm-3.75 0h.008v.008H9V12Zm-3.75 0h.008v.008H5.25V12Z" />
-              </svg>
+            </UButton>
+            <UButton variant="soft" size="lg" color="secondary" class="w-full justify-start">
+              <UIcon name="i-lucide-calendar-plus" class="mr-3 w-5 h-5" />
               Termin planen
-            </button>
+            </UButton>
           </div>
         </div>
 

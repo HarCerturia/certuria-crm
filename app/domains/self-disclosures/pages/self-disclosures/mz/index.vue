@@ -2,9 +2,9 @@
   <div class="space-y-8">
     <!-- Page header -->
     <PageHeader
-      title="Selbstauskünfte zur Trägerzulassung"
+      title="Selbstauskünfte zur Maßnahmenzulassung"
       description="Ausschließlich signierte Anträge werden hier angezeigt."
-      variant="green"
+      variant="blue"
     />
 
     <!-- Error State -->
@@ -88,7 +88,6 @@ const columns: TableColumn<SelfDisclosureRecord>[] = [
       if (proposalStatus === 'pending') {
         return h(resolveComponent('UButton'), {
           color: 'info',
-          class: 'cursor-default',
           onClick: () => navigateTo({
             path: `/self-disclosures/${row.original.submissionId}`,
             query: {
@@ -101,7 +100,6 @@ const columns: TableColumn<SelfDisclosureRecord>[] = [
       if (proposalStatus === 'approved') {
         return h(resolveComponent('UButton'), {
           color: 'success',
-          class: 'cursor-default',
           onClick: () => navigateTo({
             path: '/offers/create',
             query: { sId: row.original.submissionId }

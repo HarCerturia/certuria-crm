@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     // Todo: databases von core global inkludieren ohne utils (möglich?)....
     const { databases, config } = getAppwriteClient(event)
 
-    await databases.updateDocument(config.public.awDatabaseSelfDisclosures, config.public.awSelfDisclosuresCollectionCompletedSubmissions, id as string,
+    await databases.updateDocument(config.public.awDatabaseSelfDisclosuresTz, config.public.awSelfDisclosuresCollectionTzCompletedSubmissions, id as string,
             {
                 // isApproved true = [Enum] approved, otherwise rejected, default is pending (for unchecked proposals)
                 proposalStatus: body.data.isApproved ? 'approved' : 'rejected',
