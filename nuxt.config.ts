@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       './app/domains/core',
       './app/domains/self-disclosures',
       './app/domains/offers',
+      './app/domains/auditors',
   ],
 
   // Hybrid Rendering optimized for performance
@@ -16,6 +17,7 @@ export default defineNuxtConfig({
     '/dashboard': { ssr: false, prerender: false },
     '/self-disclosures/**': { ssr: false, prerender: false },
     '/offers/**': { ssr: false, prerender: false },
+    '/auditors/**': { ssr: false, prerender: false },
     '/admin/**': { ssr: false, prerender: false },
     '/_nuxt/**': { headers: { 'cache-control': 's-maxage=31536000' } },
     '/api/**': { cors: true },

@@ -119,6 +119,10 @@
                   <Icon name="lucide:mail" class="h-4 w-4 text-cyan-600" />
                   <p class="text-lg text-gray-900">{{ data.contactPerson.email }}</p>
                 </div>
+                <div v-if="data.contactPerson.homepage" class="flex items-center gap-2">
+                  <Icon name="lucide:link" class="h-4 w-4 text-cyan-600" />
+                  <p class="text-lg text-gray-900">{{ data.contactPerson.homepage }}</p>
+                </div>
                 <div class="flex items-center gap-2">
                   <Icon name="lucide:phone" class="h-4 w-4 text-cyan-600" />
                   <p class="text-lg text-gray-900">{{ data.contactPerson.telephone }}</p>

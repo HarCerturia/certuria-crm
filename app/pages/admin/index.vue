@@ -24,7 +24,7 @@
           </div>
           <div>
             <h2 class="text-xl font-semibold text-gray-900">Benutzerverwaltung</h2>
-            <p class="text-sm text-gray-500">{{ users.length }} Benutzer registriert</p>
+            <p class="text-sm text-gray-500">{{ list?.total }} Benutzer registriert</p>
           </div>
         </div>
         <UButton
@@ -53,23 +53,23 @@
                 Rolle
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Letzter Login
+                Account erstellt
               </th>
               <th scope="col" class="relative px-6 py-3">
                 <span class="sr-only">Aktionen</span>
               </th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-            <tr v-for="user in users" :key="user.id" class="hover:bg-gray-50 transition-colors duration-200">
+          <tbody v-if="status !== 'pending'" class="bg-white divide-y divide-gray-200">
+            <tr v-for="user in list.users" :key="user.$id" class="hover:bg-gray-50 transition-colors duration-200">
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
                     {{ user.initials }}
                   </div>
                   <div class="ml-4">
-                    <div class="text-sm font-medium text-gray-900">{{ user.name }}</div>
-                    <div class="text-sm text-gray-500">{{ user.email }}</div>
+                    <div class="text-sm font-medium text-gray-900">{{ user?.name }}</div>
+                    <div class="text-sm text-gray-500">{{ user?.email }}</div>
                   </div>
                 </div>
               </td>
@@ -80,21 +80,21 @@
                   class="inline-flex items-center"
                 >
                   <div
-:class="user.status === 'active' ? 'bg-green-400' : 'bg-red-400'"
+:class="user.status ? 'bg-green-400' : 'bg-red-400'"
                        class="h-1.5 w-1.5 rounded-full mr-1.5"/>
-                  {{ user.status === 'active' ? 'Aktiv' : 'Inaktiv' }}
+                  {{ user.status ? 'Aktiv' : 'Inaktiv' }}
                 </UBadge>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <UBadge
-                  :color="user.role === 'admin' ? 'purple' : 'gray'"
+                  :color="user.labels.includes('admin') ? 'purple' : 'gray'"
                   variant="subtle"
                 >
-                  {{ user.role === 'admin' ? 'Administrator' : 'Benutzer' }}
+                  {{ user.labels.includes('admin') ? 'Administrator' : 'Benutzer' }}
                 </UBadge>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{ user.lastLogin }}
+                {{ user.$createdAt }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <div class="flex items-center space-x-2">
@@ -301,6 +301,7 @@ class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
 </template>
 
 <script setup>
+// Todo: Only members of team ADMIN!!!
 definePageMeta({ middleware: 'auth' })
 
 // User management state
@@ -314,45 +315,28 @@ const newUser = ref({
   role: 'user'
 })
 
-
+/*
 const users = ref([
   {
-    id: 1,
+    $id: 1,
+    $createdAt: '',
+    $updatedAt: '',
     name: 'Demo User',
     email: 'demo@certuria.com',
-    initials: 'DU',
-    status: 'active',
-    role: 'admin',
+    emailVerification: false,
+    labels: [], // Todo...
+    status: false,
     lastLogin: 'vor 2 Min'
   },
-  {
-    id: 2,
-    name: 'Max Mustermann',
-    email: 'max.mustermann@beispiel.de',
-    initials: 'MM',
-    status: 'active',
-    role: 'user',
-    lastLogin: 'vor 1 Std'
-  },
-  {
-    id: 3,
-    name: 'Anna Weber',
-    email: 'anna.weber@beispiel.de',
-    initials: 'AW',
-    status: 'active',
-    role: 'user',
-    lastLogin: 'vor 3 Std'
-  },
-  {
-    id: 4,
-    name: 'Peter Schmidt',
-    email: 'peter.schmidt@beispiel.de',
-    initials: 'PS',
-    status: 'inactive',
-    role: 'user',
-    lastLogin: 'vor 2 Tagen'
-  }
 ])
+
+ */
+
+const { data: list, status, error } = await useFetch(`/api/admin/users`, {
+  lazy: true,
+});
+
+console.log(list);
 
 // User actions
 const editUser = (user) => {
@@ -370,33 +354,8 @@ const addUser = async () => {
   addingUser.value = true
 
   try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
 
-    // Generate initials
-    const nameParts = newUser.value.name.split(' ')
-    const initials = nameParts.map(part => part[0]).join('').toUpperCase()
-
-    // Add user to list
-    const newUserData = {
-      id: users.value.length + 1,
-      name: newUser.value.name,
-      email: newUser.value.email,
-      initials: initials,
-      status: 'active',
-      role: newUser.value.role,
-      lastLogin: 'Noch nie'
-    }
-
-    users.value.unshift(newUserData)
-
-    // Reset form
-    newUser.value = {
-      name: '',
-      email: '',
-      password: '',
-      role: 'user'
-    }
+    // Todo: add user api ...
 
     showAddUserModal.value = false
   } catch (error) {

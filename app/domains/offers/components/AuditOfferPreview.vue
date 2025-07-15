@@ -13,7 +13,7 @@ const customerData = [
   { label: 'Kontakt', value: props?.auditData.salutation + ' ' + props?.auditData.firstName + ' ' + props?.auditData.lastName },
   { label: 'Telefon', value: props?.auditData.telephone },
   { label: 'E-Mail', value: props?.auditData.email },
-  { label: 'Homepage', value: /*props?.auditData.homepage*/ '!Feld nicht in der Selbstauskunft!' }
+  { label: 'Homepage', value: props?.auditData.homepage }
 ]
 
 // Slot 2: Beschreibung

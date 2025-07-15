@@ -29,7 +29,7 @@
   </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import UserProfileDropdown from "~/components/layout/UserProfileDropdown.vue";
 
 defineEmits(['toggle-sidebar'])
